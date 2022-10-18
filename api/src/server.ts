@@ -34,8 +34,8 @@ app.use(express.json())
 
 app.use("/auth", authRouter)
 app.use("/hotel", hotelRouter)
-// app.use("/rooms", roomRouter)
-// app.use("/api/users", userRouter)
+app.use("/rooms", roomRouter)
+app.use("/users", userRouter)
 
 app.use(((err, req, res, next) => {
     const errorStatus = err.status || 500
