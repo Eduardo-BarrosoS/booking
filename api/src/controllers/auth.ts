@@ -1,10 +1,7 @@
 import { IApi } from "../interfaces/api";
 import { User } from "../models/Users";
 
-import "dotenv/config";
-
-
-export async function register({ req, res, next}: IApi) {
+export async function register({ req, res, next }: IApi) {
     try {
         const newUser = new User({
             username: req.body.username,
@@ -12,7 +9,7 @@ export async function register({ req, res, next}: IApi) {
             password: req.body.password,
         })
         await newUser.save(),
-        res.status(200).json(newUser)
+            res.status(200).send("user saved")
     } catch (err) {
         next(err)
     }

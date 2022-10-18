@@ -1,10 +1,11 @@
 import express, { ErrorRequestHandler } from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
-import { authRouter } from "./routes/auth.routes"
-import { hotelRouter } from "./routes/hotels.routes"
+import authRouter  from "./routes/auth.routes"
+import {hotelRouter} from "./routes/hotels.routes"
 import { roomRouter } from "./routes/rooms.routes"
 import { userRouter } from "./routes/users.routes"
+import { Hotel } from "./models/Hotels"
 
 dotenv.config()
 
@@ -29,10 +30,12 @@ mongoose.connection.on("connected", () => {
 
 app.use(express.json())
 
+
+
 app.use("/auth", authRouter)
 app.use("/hotel", hotelRouter)
 // app.use("/rooms", roomRouter)
-app.use("/users", userRouter)
+// app.use("/api/users", userRouter)
 
 app.use(((err, req, res, next) => {
     const errorStatus = err.status || 500
