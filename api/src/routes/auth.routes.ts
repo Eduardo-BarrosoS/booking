@@ -1,11 +1,9 @@
 import express from "express";
-import { register } from "../controllers/auth";
-import { IApi } from "../interfaces/api";
-import { User } from "../models/Users";
-import "dotenv/config";
+import { login, register } from "../controllers/auth";
+// import { createHotel, deleteHotel, getAllHotel, getHotel, updateHotel } from "../controllers/hotel";
 
-const authRouter = express.Router();
+export const authRouter = express.Router();
 
 authRouter.post("/register", register)
 
-export default authRouter
+authRouter.post("/login", login)

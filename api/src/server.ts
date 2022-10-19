@@ -1,7 +1,7 @@
 import express, { ErrorRequestHandler } from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
-import authRouter  from "./routes/auth.routes"
+import { authRouter }  from "./routes/auth.routes"
 import {hotelRouter} from "./routes/hotels.routes"
 import { roomRouter } from "./routes/rooms.routes"
 import { userRouter } from "./routes/users.routes"

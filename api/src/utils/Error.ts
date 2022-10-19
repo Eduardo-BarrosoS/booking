@@ -3,7 +3,7 @@ interface Error {
     message?: string
 }
 
-export function CreateError({ status, message }: Error) {
+export function CreateError(status: number, message: string) {
     const err: Error = new Error()
     err.status = status
     err.message = message

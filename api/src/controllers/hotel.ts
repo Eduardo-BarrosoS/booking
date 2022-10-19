@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { IApi } from "../interfaces/api";
 import { Hotel } from "../models/Hotels";
 
-export const createHotel = async({req, res, next}: IApi) => {
+export const createHotel = async(req: Request, res: Response, next: NextFunction) => {
     const newHotel = new Hotel(req.body)
     try {
         const saveHotel = await newHotel.save();
@@ -11,20 +10,21 @@ export const createHotel = async({req, res, next}: IApi) => {
       next(err)
     }
 }
-// export async function updateHotel({req, res, next}: IApi) {
-//     try {
-//         const saveHotel = await Hotel.findByIdAndUpdate(
-//             req.params.id, 
-//             { $set: req.body as typeof Hotel},
-//             { new: true}
-//             )
-//         res.status(200).json(saveHotel)
-//     } catch (err) {
-//         res.status(404).json(err)
-//     }
-// }
 
-export async function getHotel({req, res, next}: IApi) {
+export async function updateHotel(req: Request, res: Response, next: NextFunction) {
+    try {
+        const saveHotel = await Hotel.findByIdAndUpdate(
+            req.params.id, 
+            { $set: req.body as typeof Hotel},
+            { new: true}
+            )
+        res.status(200).json(saveHotel)
+    } catch (err) {
+        res.status(404).json(err)
+    }
+}
+
+export async function getHotel(req: Request, res: Response, next: NextFunction) {
     try {
         const hotel = await Hotel.findById(req.params.id);
         res.status(200).json(hotel)
@@ -33,7 +33,7 @@ export async function getHotel({req, res, next}: IApi) {
     }
 }
 
-export async function getAllHotel({req, res, next}: IApi) {
+export async function getAllHotel(req: Request, res: Response, next: NextFunction) {
     try {
         const hotels = await Hotel.find();
         res.status(200).json(hotels)
@@ -42,7 +42,7 @@ export async function getAllHotel({req, res, next}: IApi) {
     }
 }
 
-export async function deleteHotel({req, res, next}: IApi) {
+export async function deleteHotel(req: Request, res: Response, next: NextFunction) {
     try {
         await Hotel.findByIdAndDelete(req.params.id)
         res.status(200).json("Hotel has been deleted")
