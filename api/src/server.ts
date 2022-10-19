@@ -6,6 +6,7 @@ import {hotelRouter} from "./routes/hotels.routes"
 import { roomRouter } from "./routes/rooms.routes"
 import { userRouter } from "./routes/users.routes"
 import { Hotel } from "./models/Hotels"
+import cookieParser from "cookie-parser"
 
 dotenv.config()
 
@@ -31,11 +32,13 @@ mongoose.connection.on("connected", () => {
 app.use(express.json())
 
 
+app.use(cookieParser())
+
 
 app.use("/auth", authRouter)
 app.use("/hotel", hotelRouter)
 app.use("/rooms", roomRouter)
-app.use("/users", userRouter)
+app.use("/user", userRouter)
 
 app.use(((err, req, res, next) => {
     const errorStatus = err.status || 500
