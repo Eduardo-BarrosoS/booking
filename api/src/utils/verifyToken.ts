@@ -15,7 +15,7 @@ import { CreateError } from "./Error";
 
     export function verifyUser(req: Request, res: Response, next: NextFunction){
         verifyToken( req, res, next, (req: Request, res: Response) => {
-            if(req.user.id == req,params.is || req.user.isAdmin) next()
+            if(req.user.id == req.params.id || req.user.isAdmin) next()
             else return next(CreateError(403, "You are not authorized!"))
         })
     }
